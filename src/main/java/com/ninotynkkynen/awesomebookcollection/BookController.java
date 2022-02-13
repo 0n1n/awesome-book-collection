@@ -2,6 +2,8 @@ package com.ninotynkkynen.awesomebookcollection;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,12 +27,12 @@ class BookController {
     }
 
     @PostMapping("/books")
-    Book newBook(@RequestBody Book newBook) {
+    Book newBook(@Valid @RequestBody Book newBook) {
         return repository.save(newBook);
     }
 
     @PutMapping("/books/{id}")
-    Book updateBook(@RequestBody Book newBook, @PathVariable Long id) {
+    Book updateBook(@Valid @RequestBody Book newBook, @PathVariable Long id) {
         return repository.findById(id)
                 .map(book -> {
                     book.setTitle(newBook.getTitle());

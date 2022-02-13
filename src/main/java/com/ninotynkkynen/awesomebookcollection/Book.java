@@ -8,11 +8,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Entity
 class Book {
     private @Id @GeneratedValue Long id;
+
+    @NotNull
+    @Size(min=1)
     private String title;
+
+    @NotNull
+    @Size(min=1)
     private String author;
+
     @Lob 
     @Column(name="CONTENT", length=2000)
     private String description;
